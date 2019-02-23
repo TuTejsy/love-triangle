@@ -6,15 +6,23 @@ module.exports = function getLoveTrianglesCount(preferences = []) {
   // your implementation
   var count = 0;
 
+  //копирую данные в другой массив, чтобы не испорить исходные данные 
+  var data = []
   for (var i = 0; i < preferences.length; i++) {
-    var first = preferences[i];
-    var second = preferences[first - 1];
+    data[i] = preferences[i];
+  }
+
+  for (i = 0; i < data.length; i++) {
+    var first = data[i];
+
+    var second = data[first - 1];
     if (second == first) continue;
-    var third = preferences[second - 1];
+
+    var third = data[second - 1];
     if (second == third) continue;
     if ((i + 1) == third) {
       count++;
-      preferences[i] = 0;
+      data[i] = 0;
     }
   }
 
